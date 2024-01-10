@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// It is similar to finding the pivot of a rotated sorted array
+
 int findMin(vector<int>arr)
 {
     int n = arr.size();
