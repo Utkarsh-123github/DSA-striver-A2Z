@@ -79,6 +79,7 @@ Node* reverse(Node* head)
 }
 
 // Recursive approach
+// TC = O(n) SC = O(n)
 
 Node* recursiveReverse(Node* head)
 {
