@@ -61,6 +61,7 @@ Node* findIntersection(Node *firstHead, Node *secondHead)
 }
 
 // Second approach :- Better approach
+// TC = O(n1 + 2*n2) SC = O(1)
 int length(Node* head)
 {
     Node* temp = head;
@@ -101,4 +102,22 @@ Node* findIntersection2(Node *firstHead, Node *secondHead)
     else{
         return collisionPoint(temp2,temp1,l1-l2);
     }
+}
+
+// Optimal Approach
+// TC = O(n1+n2) SC = O(1)
+
+Node* findIntersection3(Node *firstHead, Node *secondHead)
+{
+    Node* t1 = firstHead;
+    Node* t2 = secondHead;
+    while(t1!=t2)
+    {
+        t1 = t1->next;
+        t2 = t2->next;
+        if(t1 == t2)return t1;
+        if(t1 == NULL)t1 = secondHead;
+        if(t2 == NULL)t2 = firstHead;
+    }
+    return t1;
 }
