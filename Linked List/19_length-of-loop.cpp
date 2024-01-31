@@ -40,32 +40,34 @@ void PrintLL(Node* head)
     }
 }
 
-// Brute approach :- Using hash map
+// Brute approach :- using hash map
 
-bool detectLoop(Node* head)
+int lengthOfLoop(Node* head)
 {
     Node* temp = head;
     map<Node*,int>mpp;
+    int timer = 1;
     while(temp!=NULL)
     {
         if(mpp.find(temp)!=mpp.end())
         {
-            return true;
-            break;
+            int value = mpp[temp];
+            return timer-value;
         }
-        mpp[temp] = 1;
+        mpp[temp] = timer;
+        timer++;
         temp = temp->next;
     }
-    return false;
+    return 0;
 }
 
-// Optimal Approach - using Slow and fast pointer approach
-// TC = O(n) SC = O(1)N
-bool detectLoop1(Node* head)
+// Optimal Approach - Using fast and slow pointer approach
+
+Node* detectLoop(Node* head)
 {
+    if(head == NULL || head->next == NULL)return NULL;
     Node* slow = head;
     Node* fast = head;
-    if(head == NULL || head->next==NULL)return false;
     while(slow!=NULL && fast!=NULL)
     {
         fast = fast->next;
@@ -74,8 +76,21 @@ bool detectLoop1(Node* head)
             fast = fast->next;
         }
         slow = slow->next;
-        if(fast == slow)return true;
+        if(slow == fast)return slow;
     }
-    return false;
+    return NULL;
+}
 
+int countLength(Node* head)
+{
+    Node* loopLink = detectLoop(head);
+    if(loopLink == NULL)return 0;
+    Node* temp = loopLink;
+    int count = 1;
+    while(temp->next != loopLink)
+    {
+        count++;
+        temp = temp->next;
+    }
+    return count;
 }
