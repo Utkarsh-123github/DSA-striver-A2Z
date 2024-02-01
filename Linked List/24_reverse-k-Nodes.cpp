@@ -68,6 +68,8 @@ Node* getKthNode(Node* head, int k)
     return temp;
 }
 
+// TC = O(2n) SC = O(1)
+
 Node* kReverse(Node* head,int k)
 {
     Node* temp = head; 
