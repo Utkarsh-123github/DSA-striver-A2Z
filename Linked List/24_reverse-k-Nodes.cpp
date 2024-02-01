@@ -70,33 +70,63 @@ Node* getKthNode(Node* head, int k)
 
 Node* kReverse(Node* head,int k)
 {
-    Node* temp = head;
-    Node* prevLast = NULL;
-    while(temp!=NULL)
-    {
-        Node* KthNode = getKthNode(temp,k);
-        if(KthNode == NULL)
-        {
-            if(prevLast)
-            {
-                prevLast->next = temp;
+    Node* temp = head; 
+
+    // Initialize a pointer to track the
+    // ;ast node of the previous group
+    Node* prevLast = NULL; 
+    
+    // Traverse through the linked list
+    while(temp != NULL){
+        // Get the Kth node of the current group
+        Node* kThNode = getKthNode(temp, k); 
+
+        // If the Kth node is NULL
+        // (not a complete group)
+        if(kThNode == NULL){
+            // If there was a previous group,
+            // link the last node to the current node
+            if(prevLast){
+                prevLast -> next = temp; 
             }
-            break;
+            
+            // Exit the loop
+            break; 
         }
-        Node* nextNode = KthNode->next;
-        KthNode->next = NULL;
-        reverseLL(temp);
-        if(temp == head)
-        {
-            head = KthNode;
+        
+        // Store the next node
+        // after the Kth node
+        Node* nextNode = kThNode -> next; 
+
+        // Disconnect the Kth node
+        // to prepare for reversal
+        kThNode -> next = NULL; 
+
+        // Reverse the nodes from
+        // temp to the Kth node
+        reverseLL(temp); 
+        
+        // Adjust the head if the reversal
+        // starts from the head
+        if(temp == head){
+            head = kThNode;
+        }else{
+            // Link the last node of the previous
+            // group to the reversed group
+            prevLast -> next = kThNode; 
         }
-        else{
-            prevLast->next = KthNode;
-        }
-        prevLast = temp;
-        temp = nextNode;
+
+        // Update the pointer to the
+        // last node of the previous group
+        prevLast = temp; 
+
+        // Move to the next group
+        temp = nextNode; 
     }
-    return head;
+    
+    // Return the head of the
+    // modified linked list
+    return head; 
 
 }
 
