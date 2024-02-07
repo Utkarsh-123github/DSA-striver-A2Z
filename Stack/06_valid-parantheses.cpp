@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+// TC = O(n) SC = O(n)
 bool validParantheses(string s)
 {
     stack<char>st;
