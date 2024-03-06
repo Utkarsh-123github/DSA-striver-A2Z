@@ -76,6 +76,8 @@ vector<int>inOrder(Node* root)
 }
 
 // Iterative postorder traversal
+// TC = O(n)
+// SC = O(2n)
 vector<int>postOrder(Node* root)
 {
     vector<int>ans;
