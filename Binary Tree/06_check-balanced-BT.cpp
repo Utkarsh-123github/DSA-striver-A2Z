@@ -14,6 +14,11 @@ class Node
     }
 };
 
+// Algorithm :- 
+// calculate left height and right height and if leftheight - rightheight >1 than it is not a balanced tree
+// TC = O(n)
+// SC = O(n)
+
 int height(Node* root)
 {
     if(root == NULL)
