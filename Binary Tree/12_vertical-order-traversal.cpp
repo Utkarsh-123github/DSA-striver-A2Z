@@ -61,3 +61,37 @@ vector<int> VerticalOrderTraversal(Node* root)
 
   return ans;
 }
+
+
+// Second type 
+
+vector<int> verticalOrder(Node *root)
+{
+    vector<int>ans;
+    map<int,vector<int>>mp;
+    queue<pair<Node* , int>>q;
+    q.push({root,0});
+    while(!q.empty())
+    {
+        Node* node = q.front().first;
+        int distance = q.front().second;
+        q.pop();
+        mp[distance].push_back(node->data);
+        if(node->left != NULL)
+        {
+            q.push({node->left,distance-1});
+        }
+        if(node->right != NULL)
+        {
+            q.push({node->right , distance+1});
+        }
+    }
+    for(auto it : mp)
+    {
+        for(int y : it.second)
+        {
+            ans.push_back(y);
+        }
+    }
+    return ans;
+}
