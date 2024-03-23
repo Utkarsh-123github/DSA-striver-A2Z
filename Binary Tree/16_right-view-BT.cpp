@@ -1,4 +1,5 @@
 // For explanation refer :- https://takeuforward.org/data-structure/right-left-view-of-binary-tree/
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -27,13 +28,13 @@ void solve(Node* root , int level , vector<int>&ans)
     {
         ans.push_back(root->data);
     }
-    solve(root->left , level+1 , ans);
     solve(root->right , level+1 , ans);
+    solve(root->left , level+1 , ans);
 }
 
-vector<int> leftView(Node* root)
+vector<int> rightView(Node* root)
 {
-    vector<int> ans;
+    vector<int>ans;
     solve(root , 0 , ans);
     return ans;
 }
