@@ -1,13 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void selectionSort(vector<int>&arr){
+void bubbleSort(vector<int>&arr){
     int size = arr.size();
-    for(int i=0;i<size-1;i++)
+    for(int i=size-1;i>0;i--)
     {
-        for(int j = i+1;j<size;j++){
-            if(arr[i]>arr[j]){
-                swap(arr[i],arr[j]);
+        for(int j = 0;j<i+1;j++){
+            if(arr[j]>arr[j+1]){
+                swap(arr[j],arr[j+1]);
             }
         }
     }
@@ -16,7 +16,7 @@ void selectionSort(vector<int>&arr){
 int main()
 {
     vector<int>arr = {6,7,4,3,8,9,1,2};
-    selectionSort(arr);
+    bubbleSort(arr);
     for(int i=0;i<arr.size();i++){
         cout<<arr[i]<<" ";
     }
